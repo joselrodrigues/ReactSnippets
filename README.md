@@ -43,12 +43,17 @@ npm install redux-thunk
 
 ### Apply middleware thunk
 ```r
-import { createStore, applyMiddleware, compose } from 'redux'
+import { applyMiddleware, createStore, compose } from "redux";
+import reduxThunk from "redux-thunk";
+import rootReducer from "../reducers";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(
-    applyMiddleware(thunk)
-));
+const middleware = [reduxThunk];
+
+export const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(...middleware))
+);
 ```
 
 ### Install axios
